@@ -8,23 +8,24 @@ class App < Sinatra::Base
     session[:cards]=[]
    (1..10).each do |v|
      ["Spades","Clubs", "Diamonds","Hearts" ].each_with_index do |s,i|
-       session[:cards] << ["#{v} of #{s}", v + (1/10)]
+       session[:cards] << ["#{v} of #{s}", v.to_f + (1/10)]
      end
 
    end
      {"Jack"=>11, "Queen"=>12, "King" => 13}.each do |c,v|
        ["Spades","Clubs", "Diamonds","Hearts" ].each_with_index do |s,i|
-         session[:cards] << ["#{c} of #{s}", v + (1/10)]
+         session[:cards] << ["#{c} of #{s}", v.to_f + (1/10)]
        end
      end
     session[:cards].shuffle!
-    session[:card]=session[:cards].pop
+   
     session[:guess]=0
     redirect "/play"
   end
 
   get "/play" do
-    "On the deck there is a #{session[:card][0]} (#{session[:card][1]}). Next is  <a href='#{url '/upper'}'>upper</a> or <a href='#{url '/lower'}'>lower</a>"
+     session[:card]=session[:cards].pop
+    "On the deck there is a #{session[:card][0]} (#{session[:card][1]}). </br> The Deck has #{session[:cards].size} cards </br> Next is  <a href='#{url '/upper'}'>upper</a> or <a href='#{url '/lower'}'>lower</a>"
   end
 
   get "/:guess" do
