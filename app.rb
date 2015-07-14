@@ -33,7 +33,7 @@ class App < Sinatra::Base
   end
 
   get "/:guess" do
-    current_card=session[:card]
+    current_card=session[:card].dup
     session[:card]=session[:cards].pop
     if params[:guess]=="upper" && session[:card][1] > current_card[1]
       session[:guess]+=1
