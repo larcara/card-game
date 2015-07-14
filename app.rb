@@ -5,13 +5,14 @@ enable :sessions
 get "/" do
   session[:cards]=[]
  (1..10).each do |v|
-   %w(Hearts Diamonds Clubs Spades).each do |s|
-     session[:cards] << ["#{v} of #{s}",v]
+   ["Spades","Clubs", "Diamonds","Hearts" ].each_with_index do |s,i|
+     session[:cards] << ["#{v} of #{s}", v + (1/10)]
    end
+
  end
    {"Jack"=>11, "Queen"=>12, "King" => 13}.each do |c,v|
-     %w(Hearts Diamonds Clubs Spades).each do |s|
-       session[:cards] << ["#{c} of #{s}",v]
+     ["Spades","Clubs", "Diamonds","Hearts" ].each_with_index do |s,i|
+       session[:cards] << ["#{c} of #{s}", v + (1/10)]
      end
    end
   session[:cards].shuffle!
