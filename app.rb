@@ -4,6 +4,10 @@ class App < Sinatra::Base
   set :logging, true
   enable :sessions
 
+  get "/" do
+    redirect "/init"
+  end
+  
   get "/init" do
     session[:cards]=[]
    (1..10).each do |v|
@@ -38,7 +42,7 @@ class App < Sinatra::Base
       session[:guess]+=1
       redirect "/play"
     else
-      "You lose! You bet on #{params[:guess]} of #{current_card[0]}  (#{current_card[1]})  but next card was #{session[:card][0]}  (#{session[:card][1]}). <a href='#{url '/'}'>Play Again</a>? "
+      "You lose! You bet on #{params[:guess]} of #{current_card[0]}  (#{current_card[1]})  but next card was #{session[:card][0]}  (#{session[:card][1]}). <a href='#{url '/init'}'>Play Again</a>? "
     end
   end
 
