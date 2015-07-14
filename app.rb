@@ -24,7 +24,7 @@ class App < Sinatra::Base
   end
 
   get "/play" do
-    "On the deck there is a #{session[:card][0]}. Next is  <a href='#{url '/upper'}'>upper</a> or <a href='#{url '/lower'}'>lower</a>"
+    "On the deck there is a #{session[:card][0]} (#{session[:card][1]}). Next is  <a href='#{url '/upper'}'>upper</a> or <a href='#{url '/lower'}'>lower</a>"
   end
 
   get "/:guess" do
