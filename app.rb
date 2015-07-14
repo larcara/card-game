@@ -12,13 +12,13 @@ class App < Sinatra::Base
     session[:cards]=[]
    (1..10).each do |v|
      ["Spades","Clubs", "Diamonds","Hearts" ].each_with_index do |s,i|
-       session[:cards] << ["#{v} of #{s}", v.to_f + (i/10)]
+       session[:cards] << ["#{v} of #{s}", v.to_f + (i/10.0)]
      end
 
    end
      {"Jack"=>11, "Queen"=>12, "King" => 13}.each do |c,v|
        ["Spades","Clubs", "Diamonds","Hearts" ].each_with_index do |s,i|
-         session[:cards] << ["#{c} of #{s}", v.to_f + (i/10)]
+         session[:cards] << ["#{c} of #{s}", v.to_f + (i/10.0)]
        end
      end
     session[:cards].shuffle!
