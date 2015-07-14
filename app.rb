@@ -29,10 +29,10 @@ class App < Sinatra::Base
 
   get "/play" do
     
-    "On the deck there is a #{session[:card][0]} (#{session[:card][1]}). </br> The Deck has #{session[:cards].size} cards </br> Next is  <a href='#{url '/upper'}'>upper</a> or <a href='#{url '/lower'}'>lower</a>"
+    "On the deck there is a #{session[:card][0]} (#{session[:card][1]}). </br> The Deck has #{session[:cards].size} cards </br> Next is  <a href='#{url '/bet/upper'}'>upper</a> or <a href='#{url '/bet/lower'}'>lower</a>"
   end
 
-  get "/:guess" do
+  get "/bet/:guess" do
     current_card=session[:card].dup
     session[:card]=session[:cards].pop
     if params[:guess]=="upper" && session[:card][1] > current_card[1]
