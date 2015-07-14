@@ -4,7 +4,7 @@ class App < Sinatra::Base
   set :logging, true
   enable :sessions
 
-  get "/" do
+  get "/init" do
     session[:cards]=[]
    (1..10).each do |v|
      ["Spades","Clubs", "Diamonds","Hearts" ].each_with_index do |s,i|
